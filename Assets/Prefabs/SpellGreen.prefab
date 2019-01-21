@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 33208000818243532}
   - component: {fileID: 23006695895758070}
   - component: {fileID: 61069891229142164}
-  - component: {fileID: 114436494154216432}
   - component: {fileID: 50301300640562004}
+  - component: {fileID: 114699270858311494}
   m_Layer: 0
   m_Name: SpellGreen
   m_TagString: Untagged
@@ -131,7 +131,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.9568157, y: 1.9444561}
   m_EdgeRadius: 0
---- !u!114 &114436494154216432
+--- !u!114 &114699270858311494
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}

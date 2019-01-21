@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ground
   - Wall
+  - DeathTrigger
+  - Spell
   layers:
   - Default
   - TransparentFX

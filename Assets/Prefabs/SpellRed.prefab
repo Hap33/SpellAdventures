@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 33617411876831060}
   - component: {fileID: 23980729184813020}
   - component: {fileID: 61516374362493722}
-  - component: {fileID: 114917531680938026}
   - component: {fileID: 50602065013925512}
+  - component: {fileID: 114919565477390874}
   m_Layer: 0
   m_Name: SpellRed
   m_TagString: Untagged
@@ -100,7 +100,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -131,7 +131,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114917531680938026
+--- !u!114 &114919565477390874
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,8 +139,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1575477083128568}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa08f276eaf718c459880710d76d80ef, type: 3}
+  m_Script: {fileID: 11500000, guid: 95bb2c5c6f6a802419dcefa863d5a94d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SpellType: 2
-  SpellSpeed: 20
+  SpellSpeed: 250

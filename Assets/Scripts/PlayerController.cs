@@ -64,6 +64,21 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("DeathTrigger")){
+            Debug.Log("You are dead");
+        }
+    }
+
+    public void SpellThrow(int spellID)
+    {
+        NewPos = new Vector3(transform.position.x + 5, transform.position.y, transform.position.z);
+        Instantiate(SpellList[spellID], NewPos, transform.rotation);
+        HasThrownSpell = true;
+        StartCoroutine(WaitForSpell());
+    }
+
     private void CheckJump()
     {
         for (int i = 0; i < Input.touchCount; ++i)
@@ -84,14 +99,6 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-    }
-
-    public void SpellThrow(int spellID)
-    {
-        NewPos = new Vector3(transform.position.x + 5, transform.position.y, transform.position.z);
-        Instantiate(SpellList[spellID], NewPos, transform.rotation);
-        HasThrownSpell = true;
-        StartCoroutine(WaitForSpell());
     }
 
     IEnumerator WaitForSpell()
