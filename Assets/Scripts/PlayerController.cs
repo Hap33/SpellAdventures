@@ -62,6 +62,10 @@ public class PlayerController : MonoBehaviour
         {
             JumpCount--;
         }
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            MyRB.gravityScale = 1;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

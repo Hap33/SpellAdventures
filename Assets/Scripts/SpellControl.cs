@@ -5,22 +5,27 @@ using UnityEngine;
 public class SpellControl : MonoBehaviour {
 
     public int SpellNumber;
+    public float CoolDown;
 
     private int CornerCount;
     private GameObject[] OtherSpell;
+    private bool CanThrowSpell;
 
     private void Start()
     {
+        CanThrowSpell = true;
         CornerCount = 0;
         OtherSpell = GameObject.FindGameObjectsWithTag("Spell");
     }
 
     private void Update()
     {
-        if (CornerCount == transform.childCount)
+        if (CornerCount == transform.childCount && CanThrowSpell)
         {
             FindObjectOfType<PlayerController>().SpellThrow(SpellNumber-1);
             CornerCount = 0;
+            //CanThrowSpell = false;
+            //StartCoroutine(CooldownSpell());
         }
         transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, Camera.main.transform.position.z+10);
 
@@ -60,5 +65,12 @@ public class SpellControl : MonoBehaviour {
         {
             CornerCount = 0;
         }
+    }
+
+    IEnumerator CooldownSpell()
+    {
+        yield return new WaitForSeconds(CoolDown);
+        CanThrowSpell = true;
+        Debug.Log("Spell Ready");
     }
 }
