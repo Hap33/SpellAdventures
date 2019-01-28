@@ -6,9 +6,24 @@ public class EnemyControl : MonoBehaviour {
 
     public float Speed, Life;
     public int Weakness, GreatWeakness;
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    private bool WentToTheScreen;
+
+    private void Start()
+    {
+        WentToTheScreen = false;
+    }
+
+    private void OnBecameVisible()
+    {
+        WentToTheScreen = true;
+    }
+
+    private void OnBecameInvisible()
+    {
+        if (WentToTheScreen)
+        {
+            Destroy(gameObject);
+        }
+    }
 }

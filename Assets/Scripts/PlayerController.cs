@@ -8,15 +8,18 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D MyRB;
     private Vector2 BasePos;
     private float JumpCount, WallJumpDir;
-    private bool OnWall, HasThrownSpell, JumpFromWall;
+    private bool OnWall, HasThrownSpell, JumpFromWall, CanBeHurt;
     private Vector3 NewPos;
+    private int LivePoints;
 
-    public float Speed, JumpHeight, SecondsAfterSpell;
+    public float Speed, JumpHeight, SecondsAfterSpell, DamageCooldown;
     public GameObject SpellGuide;
     public GameObject[] SpellList;
 
     private void Start()
     {
+        CanBeHurt = true;
+        LivePoints = 3;
         JumpCount = 2;
         MyRB = GetComponent<Rigidbody2D>();
     }
@@ -54,6 +57,27 @@ public class PlayerController : MonoBehaviour
             WallJumpDir = collision.GetContact(0).point.x - transform.position.x;
             JumpCount = 2;
         }
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            if (CanBeHurt)
+            {
+                Destroy(collision.gameObject);
+                LivePoints--;
+                if (LivePoints <= 0)
+                {
+                    DeathTrigger();
+                    return;
+                }
+                StartCoroutine(DamageCooldownTimer());
+                CanBeHurt = false;
+                //TODO SpriteChange
+            }
+            else if (!CanBeHurt)
+            {
+                Physics2D.IgnoreCollision(transform.GetComponent<BoxCollider2D>(), collision.gameObject.GetComponent<BoxCollider2D>(), true);
+            }
+            Debug.Log(LivePoints);
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -71,7 +95,7 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("DeathTrigger")){
-            Debug.Log("You are dead");
+            DeathTrigger();
         }
     }
 
@@ -105,9 +129,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void DeathTrigger()
+    {
+        Debug.Log("Dead");
+    }
+
     IEnumerator WaitForSpell()
     {
         yield return new WaitForSeconds(SecondsAfterSpell);
         HasThrownSpell = false;
+    }
+
+    IEnumerator DamageCooldownTimer()
+    {
+        yield return new WaitForSeconds(DamageCooldown);
+        CanBeHurt = true;
+        //TODO Sprite change
+        Debug.Log("I'm better");
     }
 }
