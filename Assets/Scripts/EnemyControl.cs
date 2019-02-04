@@ -14,6 +14,14 @@ public class EnemyControl : MonoBehaviour {
         WentToTheScreen = false;
     }
 
+    private void FixedUpdate()
+    {
+        if (WentToTheScreen == true)
+        {
+            transform.Translate(Vector2.left * Time.deltaTime * Speed);
+        }
+    }
+
     private void OnBecameVisible()
     {
         WentToTheScreen = true;
