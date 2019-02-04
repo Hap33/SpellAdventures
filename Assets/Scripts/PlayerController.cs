@@ -11,13 +11,17 @@ public class PlayerController : MonoBehaviour
     private bool OnWall, HasThrownSpell, JumpFromWall, CanBeHurt;
     private Vector3 NewPos;
     private int LivePoints;
+    private AudioSource My_As;
 
     public float Speed, JumpHeight, SecondsAfterSpell, DamageCooldown;
     public GameObject SpellGuide;
     public GameObject[] SpellList;
+    public AudioClip JumpSound, DJumpSound, WJumpSound, HurtSound, DeathSound;
+    public AudioClip[] SpellSounds;
 
     private void Start()
     {
+        My_As = GetComponent<AudioSource>();
         CanBeHurt = true;
         LivePoints = 3;
         JumpCount = 2;
@@ -68,6 +72,7 @@ public class PlayerController : MonoBehaviour
                     DeathTrigger();
                     return;
                 }
+                My_As.PlayOneShot(HurtSound);
                 StartCoroutine(DamageCooldownTimer());
                 CanBeHurt = false;
                 //TODO SpriteChange
@@ -76,7 +81,6 @@ public class PlayerController : MonoBehaviour
             {
                 Physics2D.IgnoreCollision(transform.GetComponent<BoxCollider2D>(), collision.gameObject.GetComponent<BoxCollider2D>(), true);
             }
-            Debug.Log(LivePoints);
         }
     }
 
@@ -85,6 +89,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             JumpCount--;
+            My_As.PlayOneShot(JumpSound);
         }
         if (collision.gameObject.CompareTag("Wall"))
         {
@@ -101,8 +106,9 @@ public class PlayerController : MonoBehaviour
 
     public void SpellThrow(int spellID)
     {
-        NewPos = new Vector3(transform.position.x + 5, transform.position.y, transform.position.z);
+        NewPos = new Vector3(transform.position.x +2 , transform.position.y, transform.position.z);
         Instantiate(SpellList[spellID], NewPos, transform.rotation);
+        My_As.PlayOneShot(SpellSounds[spellID]);
         HasThrownSpell = true;
         StartCoroutine(WaitForSpell());
     }
@@ -115,6 +121,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (OnWall)
                 {
+                    My_As.PlayOneShot(WJumpSound);
                     MyRB.AddForce(new Vector2(-WallJumpDir * 10, JumpHeight * 2), ForceMode2D.Impulse);
                     OnWall = false;
                     MyRB.gravityScale = 1;
@@ -122,7 +129,8 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    MyRB.AddForce(new Vector2(0, JumpHeight), ForceMode2D.Impulse);
+                    My_As.PlayOneShot(DJumpSound);
+                   MyRB.AddForce(new Vector2(0, JumpHeight), ForceMode2D.Impulse);
                     JumpCount--;
                 }
             }
@@ -131,6 +139,7 @@ public class PlayerController : MonoBehaviour
 
     private void DeathTrigger()
     {
+        My_As.PlayOneShot(DeathSound);
         Debug.Log("Dead");
     }
 
