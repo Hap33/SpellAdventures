@@ -72,4 +72,9 @@ public class EnemyControl : MonoBehaviour {
             }
         }
     }
+
+    private void OnDestroy()
+    {
+        Instantiate(DeathVFX, transform.position, transform.rotation);
+    }
 }

@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 NewPos;
     private int LivePoints;
     private AudioSource My_As;
+    private SpriteRenderer PlayerSprite;
 
     public float Speed, JumpHeight, SecondsAfterSpell, DamageCooldown;
     public GameObject SpellGuide;
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        PlayerSprite = GetComponent<SpriteRenderer>();
         My_As = GetComponent<AudioSource>();
         CanBeHurt = true;
         LivePoints = 3;
@@ -65,6 +67,7 @@ public class PlayerController : MonoBehaviour
         {
             if (CanBeHurt)
             {
+                PlayerSprite.color = new Color(1, 1, 1, 0.2f);
                 Destroy(collision.gameObject);
                 LivePoints--;
                 if (LivePoints <= 0)
@@ -152,6 +155,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator DamageCooldownTimer()
     {
         yield return new WaitForSeconds(DamageCooldown);
+        PlayerSprite.color = new Color(1, 1, 1, 1);
         CanBeHurt = true;
         //TODO Sprite change
         Debug.Log("I'm better");
