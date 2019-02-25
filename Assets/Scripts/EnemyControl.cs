@@ -53,10 +53,6 @@ public class EnemyControl : MonoBehaviour {
                 if (SpellProjectile.SpellType == Weakness)
                 {
                     Life--;
-                    if (Life == 0)
-                    {
-
-                    }
                 }
                 if (SpellProjectile.SpellType == GreatWeakness)
                 {
