@@ -8,6 +8,7 @@ public class SpellActionBomb : MonoBehaviour {
 
     public int SpellType;
     public float SpellSpeed;
+    public GameObject Explosion;
 
     // Use this for initialization
     void Start()
@@ -26,7 +27,7 @@ public class SpellActionBomb : MonoBehaviour {
     {
         if (collision.gameObject.tag != "Player")
         {
-            //TODO Collision with monster
+            Instantiate(Explosion, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }

@@ -38,6 +38,7 @@ public class EnemyControl : MonoBehaviour {
     {
         if (WentToTheScreen)
         {
+            Instantiate(DeathVFX, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }
@@ -52,6 +53,10 @@ public class EnemyControl : MonoBehaviour {
                 if (SpellProjectile.SpellType == Weakness)
                 {
                     Life--;
+                    if (Life == 0)
+                    {
+
+                    }
                 }
                 if (SpellProjectile.SpellType == GreatWeakness)
                 {
@@ -71,10 +76,5 @@ public class EnemyControl : MonoBehaviour {
                 }
             }
         }
-    }
-
-    private void OnDestroy()
-    {
-        Instantiate(DeathVFX, transform.position, transform.rotation);
     }
 }

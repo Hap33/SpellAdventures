@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer PlayerSprite;
 
     public float Speed, JumpHeight, SecondsAfterSpell, DamageCooldown;
-    public GameObject SpellGuide;
+    public GameObject SpellGuide, ElectricityEffect;
     public GameObject[] SpellList;
     public AudioClip JumpSound, DJumpSound, WJumpSound, HurtSound, DeathSound;
     public AudioClip[] SpellSounds;
@@ -110,6 +110,10 @@ public class PlayerController : MonoBehaviour
     public void SpellThrow(int spellID)
     {
         NewPos = new Vector3(transform.position.x +2 , transform.position.y, transform.position.z);
+        if (spellID == 0)
+        {
+            Instantiate(ElectricityEffect, transform.position, transform.rotation);
+        }
         Instantiate(SpellList[spellID], NewPos, transform.rotation);
         My_As.PlayOneShot(SpellSounds[spellID]);
         HasThrownSpell = true;
