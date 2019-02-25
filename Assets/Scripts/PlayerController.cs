@@ -14,11 +14,13 @@ public class PlayerController : MonoBehaviour
     private AudioSource My_As;
     private SpriteRenderer PlayerSprite;
 
-    public float Speed, JumpHeight, SecondsAfterSpell, DamageCooldown;
+    public float Speed, JumpHeight, WallJumpHeight, SecondsAfterSpell, DamageCooldown;
     public GameObject SpellGuide, ElectricityEffect;
     public GameObject[] SpellList;
     public AudioClip JumpSound, DJumpSound, WJumpSound, HurtSound, DeathSound;
     public AudioClip[] SpellSounds;
+    public Animator LifeIndicator;
+    public RuntimeAnimatorController[] LifeControllers;
 
     private void Start()
     {
@@ -32,6 +34,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        LifeIndicator.runtimeAnimatorController = LifeControllers[LivePoints];
         if ((Input.touchCount > 0) && (Input.GetTouch(0).phase == TouchPhase.Moved))
         {
             Instantiate(SpellGuide);
@@ -112,7 +115,7 @@ public class PlayerController : MonoBehaviour
         NewPos = new Vector3(transform.position.x +2 , transform.position.y, transform.position.z);
         if (spellID == 0)
         {
-            Instantiate(ElectricityEffect, transform.position, transform.rotation);
+            Instantiate(ElectricityEffect, transform);
         }
         Instantiate(SpellList[spellID], NewPos, transform.rotation);
         My_As.PlayOneShot(SpellSounds[spellID]);
@@ -129,7 +132,7 @@ public class PlayerController : MonoBehaviour
                 if (OnWall)
                 {
                     My_As.PlayOneShot(WJumpSound);
-                    MyRB.AddForce(new Vector2(-WallJumpDir * 10, JumpHeight * 2), ForceMode2D.Impulse);
+                    MyRB.AddForce(new Vector2(-WallJumpDir * 5, WallJumpHeight * 2), ForceMode2D.Impulse);
                     OnWall = false;
                     MyRB.gravityScale = 1;
                     JumpFromWall = true;
@@ -146,8 +149,9 @@ public class PlayerController : MonoBehaviour
 
     private void DeathTrigger()
     {
+        LivePoints = 0;
         My_As.PlayOneShot(DeathSound);
-        Debug.Log("Dead");
+        Destroy(gameObject);
     }
 
     IEnumerator WaitForSpell()

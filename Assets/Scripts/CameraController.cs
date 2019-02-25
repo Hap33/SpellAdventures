@@ -17,7 +17,10 @@ public class CameraController : MonoBehaviour {
 
     private void Update()
     {
-        Vector3 camPos = new Vector3(Player.position.x + XOffset, Player.position.y+YOffset, Player.position.z-12);
-        transform.position = Vector3.MoveTowards(transform.position, camPos, CamSpeedToPlayer*Time.deltaTime);
+        if (Player != null)
+        {
+            Vector3 camPos = new Vector3(Player.position.x + XOffset, Player.position.y + YOffset, Player.position.z - 12);
+            transform.position = Vector3.MoveTowards(transform.position, camPos, CamSpeedToPlayer * Time.deltaTime);
+        }
     }
 }

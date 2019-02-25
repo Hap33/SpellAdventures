@@ -40,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1404507087333270}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -51.8, y: -28.3, z: 0}
+  m_LocalPosition: {x: -139.19, y: -36.32, z: 0}
   m_LocalScale: {x: 6.331563, y: 6.331563, z: 6.331563}
   m_Children: []
   m_Father: {fileID: 0}
@@ -229,11 +229,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 746b8dbeb160c1449a11df31a01cbcd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 6
+  Speed: 5
   JumpHeight: 5
+  WallJumpHeight: 4
   SecondsAfterSpell: 1
   DamageCooldown: 2
   SpellGuide: {fileID: 1565411779511030, guid: 013fcc0c9f16c3f4ba0b6d7056996106, type: 2}
+  ElectricityEffect: {fileID: 1252404395795958, guid: fb405fe2cf54d8f4c98890b4bd8f040d,
+    type: 2}
   SpellList:
   - {fileID: 1951980761181340, guid: af42f06db8713fe458250a09d12dee3e, type: 2}
   - {fileID: 1575477083128568, guid: 8b34a4b0507477645a536a5fbef6f430, type: 2}
