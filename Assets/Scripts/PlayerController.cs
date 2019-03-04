@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
+            PlayerSprite.flipX = false;
             JumpFromWall = false;
             OnWall = false;
             JumpCount = 2;
@@ -131,6 +132,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (OnWall)
                 {
+                    PlayerSprite.flipX = !PlayerSprite.flipX;
                     My_As.PlayOneShot(WJumpSound);
                     MyRB.AddForce(new Vector2(-WallJumpDir * 5, WallJumpHeight * 2), ForceMode2D.Impulse);
                     OnWall = false;
@@ -140,8 +142,9 @@ public class PlayerController : MonoBehaviour
                 else
                 {
                     My_As.PlayOneShot(DJumpSound);
-                   MyRB.AddForce(new Vector2(0, JumpHeight), ForceMode2D.Impulse);
+                    MyRB.AddForce(new Vector2(0, JumpHeight), ForceMode2D.Impulse);
                     JumpCount--;
+                    Debug.Log("Jumping");
                 }
             }
         }
