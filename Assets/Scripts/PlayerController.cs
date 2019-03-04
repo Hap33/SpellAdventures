@@ -19,11 +19,12 @@ public class PlayerController : MonoBehaviour
     public GameObject[] SpellList;
     public AudioClip JumpSound, DJumpSound, WJumpSound, HurtSound, DeathSound;
     public AudioClip[] SpellSounds;
-    public Animator LifeIndicator;
+    public Animator LifeIndicator, PlayerAnimator;
     public RuntimeAnimatorController[] LifeControllers;
 
     private void Start()
     {
+        PlayerAnimator = GetComponent<Animator>();
         PlayerSprite = GetComponent<SpriteRenderer>();
         My_As = GetComponent<AudioSource>();
         CanBeHurt = true;
@@ -34,6 +35,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (LivePoints == 0)
+        {
+            return;
+        }
+
         LifeIndicator.runtimeAnimatorController = LifeControllers[LivePoints];
         if ((Input.touchCount > 0) && (Input.GetTouch(0).phase == TouchPhase.Moved))
         {
@@ -50,6 +56,8 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
+            PlayerAnimator.SetBool("IsJumping", false);
+            PlayerAnimator.SetBool("OnWall", false);
             PlayerSprite.flipX = false;
             JumpFromWall = false;
             OnWall = false;
@@ -61,6 +69,8 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
+            PlayerAnimator.SetBool("OnWall", true);
+            PlayerAnimator.SetBool("IsJumping", false);
             OnWall = true;
             MyRB.velocity = Vector2.zero;
             MyRB.gravityScale = 0.1f;
@@ -71,13 +81,15 @@ public class PlayerController : MonoBehaviour
         {
             if (CanBeHurt)
             {
-                PlayerSprite.color = new Color(1, 1, 1, 0.2f);
                 Destroy(collision.gameObject);
                 LivePoints--;
-                if (LivePoints <= 0)
+                if(LivePoints != 0)
                 {
-                    DeathTrigger();
-                    return;
+                    PlayerSprite.color = new Color(1, 1, 1, 0.2f);
+                }
+                else
+                {
+                    PlayerAnimator.SetBool("Dead", true);
                 }
                 My_As.PlayOneShot(HurtSound);
                 StartCoroutine(DamageCooldownTimer());
@@ -107,7 +119,7 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("DeathTrigger")){
-            DeathTrigger();
+            LivePoints = 0;
         }
     }
 
@@ -132,6 +144,8 @@ public class PlayerController : MonoBehaviour
             {
                 if (OnWall)
                 {
+                    PlayerAnimator.SetBool("IsJumping", true);
+                    PlayerAnimator.SetBool("OnWall", false);
                     PlayerSprite.flipX = !PlayerSprite.flipX;
                     My_As.PlayOneShot(WJumpSound);
                     MyRB.AddForce(new Vector2(-WallJumpDir * 5, WallJumpHeight * 2), ForceMode2D.Impulse);
@@ -141,6 +155,8 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
+                    PlayerAnimator.SetBool("IsJumping", true);
+                    PlayerAnimator.SetBool("OnWall", false);
                     My_As.PlayOneShot(DJumpSound);
                     MyRB.AddForce(new Vector2(0, JumpHeight), ForceMode2D.Impulse);
                     JumpCount--;
@@ -150,12 +166,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void DeathTrigger()
+    /*private void DeathTrigger()
     {
         LivePoints = 0;
         My_As.PlayOneShot(DeathSound);
         Destroy(gameObject);
-    }
+    }*/
 
     IEnumerator WaitForSpell()
     {
