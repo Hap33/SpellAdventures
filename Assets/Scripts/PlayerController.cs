@@ -112,6 +112,7 @@ public class PlayerController : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Wall"))
         {
+            PlayerAnimator.SetBool("OnWall", false);
             MyRB.gravityScale = 1;
         }
     }
@@ -120,6 +121,9 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.CompareTag("DeathTrigger")){
             LivePoints = 0;
+            PlayerAnimator.SetBool("Dead", true);
+            MyRB.velocity = Vector2.zero;
+            MyRB.gravityScale = 0;
         }
     }
 
