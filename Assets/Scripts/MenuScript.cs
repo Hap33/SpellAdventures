@@ -10,7 +10,7 @@ namespace Assets.SimpleAndroidNotifications
     {
 
         public string notifTitre = "Spell Adventure";
-        public string notifTexte = "Ne nous oubliez pas !";
+        public string notifTexte = "Une Nouvelle carte vous attends!";
         public NotificationIcon notifIcon;
 
         public void PlayGame()
