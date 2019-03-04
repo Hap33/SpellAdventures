@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -124,6 +125,7 @@ public class PlayerController : MonoBehaviour
             PlayerAnimator.SetBool("Dead", true);
             MyRB.velocity = Vector2.zero;
             MyRB.gravityScale = 0;
+            StartCoroutine(RestartDeath());
         }
     }
 
@@ -190,5 +192,11 @@ public class PlayerController : MonoBehaviour
         CanBeHurt = true;
         //TODO Sprite change
         Debug.Log("I'm better");
+    }
+
+    IEnumerator RestartDeath()
+    {
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

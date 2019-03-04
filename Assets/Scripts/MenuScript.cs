@@ -11,6 +11,7 @@ namespace Assets.SimpleAndroidNotifications
 
         public string notifTitre = "Spell Adventure";
         public string notifTexte = "Ne nous oubliez pas !";
+        public NotificationIcon notifIcon;
 
         public void PlayGame()
         {
@@ -19,7 +20,7 @@ namespace Assets.SimpleAndroidNotifications
 
         public void QuitGame()
         {
-            NotificationManager.Send(TimeSpan.FromSeconds(20), notifTitre, notifTexte, Color.white);
+            NotificationManager.Send(TimeSpan.FromSeconds(5), notifTitre, notifTexte, Color.black, NotificationIcon.Star);
             Application.Quit();
         }
     }
