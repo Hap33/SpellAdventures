@@ -9,6 +9,7 @@ TagManager:
   - DeathTrigger
   - Spell
   - Enemy
+  - EndTrigger
   layers:
   - Default
   - TransparentFX

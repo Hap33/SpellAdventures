@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D MyRB;
     private Vector2 BasePos;
     private float JumpCount, WallJumpDir;
-    private bool OnWall, HasThrownSpell, JumpFromWall, CanBeHurt;
+    private bool OnWall, HasThrownSpell, JumpFromWall, CanBeHurt, hasEndedGame;
     private Vector3 NewPos;
     private int LivePoints;
     private AudioSource My_As;
@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     public float Speed, JumpHeight, WallJumpHeight, SecondsAfterSpell, DamageCooldown;
     public GameObject SpellGuide, ElectricityEffect;
     public GameObject[] SpellList;
-    public AudioClip JumpSound, DJumpSound, WJumpSound, HurtSound, DeathSound;
+    public AudioClip JumpSound, DJumpSound, WJumpSound, HurtSound, DeathSound, EndSound;
     public AudioClip[] SpellSounds;
     public Animator LifeIndicator, PlayerAnimator;
     public RuntimeAnimatorController[] LifeControllers;
@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (LivePoints == 0)
+        if (LivePoints == 0 || hasEndedGame)
         {
             return;
         }
@@ -127,6 +127,14 @@ public class PlayerController : MonoBehaviour
             MyRB.velocity = Vector2.zero;
             MyRB.gravityScale = 0;
             StartCoroutine(RestartDeath());
+        }
+        if (collision.CompareTag("EndTrigger"))
+        {
+            MyRB.velocity = Vector2.zero;
+            MyRB.gravityScale = 0;
+            hasEndedGame = true;
+            FindObjectOfType<UIController>().EndGame();
+            My_As.PlayOneShot(EndSound);
         }
     }
 

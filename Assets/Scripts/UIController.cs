@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour {
 
+    public GameObject EndSprites, EndButtons, PauseButton;
+
     public void ResumeGame()
     {
         Time.timeScale = 1;
@@ -25,5 +27,12 @@ public class UIController : MonoBehaviour {
     public void PauseGame()
     {
         Time.timeScale = 0;
+    }
+
+    public void EndGame()
+    {
+        EndSprites.SetActive(true);
+        EndButtons.SetActive(true);
+        PauseButton.SetActive(false);
     }
 }
