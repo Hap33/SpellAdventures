@@ -6575,7 +6575,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ae42750c27e66734bba25fb9749616f2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6d43153010df0314088da2acb80087e2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7589,6 +7589,11 @@ Prefab:
     - target: {fileID: 1856758739674910, guid: 85bbad7b276aba544886260dfdb483dc, type: 2}
       propertyPath: m_Name
       value: Enemy (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114370493173289324, guid: 85bbad7b276aba544886260dfdb483dc,
+        type: 2}
+      propertyPath: Speed
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85bbad7b276aba544886260dfdb483dc, type: 2}
@@ -54677,6 +54682,11 @@ Prefab:
       propertyPath: m_Name
       value: Enemy (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 114370493173289324, guid: 85bbad7b276aba544886260dfdb483dc,
+        type: 2}
+      propertyPath: Speed
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85bbad7b276aba544886260dfdb483dc, type: 2}
   m_IsPrefabAsset: 0
@@ -57012,6 +57022,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114370493173289324, guid: 85bbad7b276aba544886260dfdb483dc,
+        type: 2}
+      propertyPath: Speed
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85bbad7b276aba544886260dfdb483dc, type: 2}
   m_IsPrefabAsset: 0
@@ -57407,7 +57422,7 @@ Prefab:
     - target: {fileID: 114370493173289324, guid: 85bbad7b276aba544886260dfdb483dc,
         type: 2}
       propertyPath: Speed
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85bbad7b276aba544886260dfdb483dc, type: 2}
@@ -57450,6 +57465,11 @@ Prefab:
     - target: {fileID: 4977495039082164, guid: 8c338d8ddfbcf6142b6cc7915cd23f05, type: 2}
       propertyPath: m_RootOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114370493173289324, guid: 8c338d8ddfbcf6142b6cc7915cd23f05,
+        type: 2}
+      propertyPath: Speed
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c338d8ddfbcf6142b6cc7915cd23f05, type: 2}
@@ -57597,6 +57617,11 @@ Prefab:
     - target: {fileID: 1856758739674910, guid: 85bbad7b276aba544886260dfdb483dc, type: 2}
       propertyPath: m_Name
       value: Enemy (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114370493173289324, guid: 85bbad7b276aba544886260dfdb483dc,
+        type: 2}
+      propertyPath: Speed
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85bbad7b276aba544886260dfdb483dc, type: 2}
@@ -58240,6 +58265,11 @@ Prefab:
       propertyPath: m_Name
       value: Enemy_Skeleton (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 114370493173289324, guid: 0a3ce041435fb9f4681d67daa649f2b1,
+        type: 2}
+      propertyPath: Speed
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a3ce041435fb9f4681d67daa649f2b1, type: 2}
   m_IsPrefabAsset: 0
@@ -58524,6 +58554,11 @@ Prefab:
     - target: {fileID: 1856758739674910, guid: 85bbad7b276aba544886260dfdb483dc, type: 2}
       propertyPath: m_Name
       value: Enemy (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114370493173289324, guid: 85bbad7b276aba544886260dfdb483dc,
+        type: 2}
+      propertyPath: Speed
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85bbad7b276aba544886260dfdb483dc, type: 2}
@@ -59248,6 +59283,11 @@ Prefab:
     - target: {fileID: 4977495039082164, guid: f92a49163d1e17944a67bd20df49d9ec, type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114370493173289324, guid: f92a49163d1e17944a67bd20df49d9ec,
+        type: 2}
+      propertyPath: Speed
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f92a49163d1e17944a67bd20df49d9ec, type: 2}

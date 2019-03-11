@@ -91,6 +91,7 @@ public class PlayerController : MonoBehaviour
                 else
                 {
                     PlayerAnimator.SetBool("Dead", true);
+                    StartCoroutine(RestartDeath());
                 }
                 My_As.PlayOneShot(HurtSound);
                 StartCoroutine(DamageCooldownTimer());
