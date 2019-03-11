@@ -621,7 +621,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   notifTitre: Spell Adventure
-  notifTexte: Ne nous oubliez pas !
+  notifTexte: Une nouvelle carte vous attends!
+  notifIcon: 0
 --- !u!1 &1159284577
 GameObject:
   m_ObjectHideFlags: 0
