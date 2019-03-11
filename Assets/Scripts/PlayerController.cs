@@ -166,7 +166,6 @@ public class PlayerController : MonoBehaviour
                     My_As.PlayOneShot(DJumpSound);
                     MyRB.AddForce(new Vector2(0, JumpHeight), ForceMode2D.Impulse);
                     JumpCount--;
-                    Debug.Log("Jumping");
                 }
             }
         }
@@ -191,7 +190,6 @@ public class PlayerController : MonoBehaviour
         PlayerSprite.color = new Color(1, 1, 1, 1);
         CanBeHurt = true;
         //TODO Sprite change
-        Debug.Log("I'm better");
     }
 
     IEnumerator RestartDeath()
