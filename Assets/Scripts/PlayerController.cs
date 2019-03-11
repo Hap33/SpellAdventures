@@ -159,6 +159,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (OnWall)
                 {
+                    JumpCount = 0;
                     PlayerAnimator.SetBool("IsJumping", true);
                     PlayerAnimator.SetBool("OnWall", false);
                     PlayerSprite.flipX = !PlayerSprite.flipX;
